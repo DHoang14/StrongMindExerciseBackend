@@ -1,0 +1,20 @@
+{
+  "name": "strongmindexercise",
+  "version": "1.0.0",
+  "description": "CRUD website for pizza and toppings",
+  "main": "server.js",
+  "scripts": {
+    "start": "node functions/server.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "dotenv": "^16.4.7",
+    "express": "^4.21.2",
+    "netlify-cli": "^19.0.0",
+    "netlify-lambda": "^2.0.16",
+    "serverless-http": "^3.2.0"
+  }
+}

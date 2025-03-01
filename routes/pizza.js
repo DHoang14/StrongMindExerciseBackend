@@ -7,5 +7,5 @@ router.route('/')
     .post(pizzaController.addPizza)
     .delete(pizzaController.deletePizza)
     .put(pizzaController.updatePizza);
-
+    
 module.exports = router;

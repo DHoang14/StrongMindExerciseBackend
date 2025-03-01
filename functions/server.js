@@ -27,6 +27,6 @@ const handler = serverless(app);
 module.exports.handler = async (event, context) => {
     context.callbackWaitsForEmptyEventLoop= false;
     const result = await handler(event, context);
-    disconnectDB()
+    await disconnectDB()
     return result;
 }

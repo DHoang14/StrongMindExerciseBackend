@@ -1,6 +1,6 @@
 const allowedOrigins = [
-    'http://localhost:5173/',
-    'http://localhost:5173'
+    'https://brilliant-sfogliatella-55bf0c.netlify.app/',
+    'https://brilliant-sfogliatella-55bf0c.netlify.app'
 ]
 
 module.exports = allowedOrigins;

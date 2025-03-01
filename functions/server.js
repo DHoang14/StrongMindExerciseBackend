@@ -9,7 +9,6 @@ const connectDB = require('../config/dbConnection');
 const disconnectDB = require('../config/dbDisconnection')
 const PORT = process.env.port || 4500;
 
-connectDB();
 app.use(creds);
 app.use(cors(corsOptions));
 app.use(express.json());

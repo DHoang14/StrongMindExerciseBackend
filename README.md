@@ -18,7 +18,15 @@ Next, you have to make one change to prevent the server from rejecting the local
 if (allowedOrigins.indexOf(origin) !== -1 || !origin) {
 ```
 
-Since local host typically returns an undefined origin, changing this line automatically approves the website for CORS. After this, you can start the server with 
+Since local host typically returns an undefined origin, changing this line automatically approves the website for CORS. 
+
+One last thing you need to do before starting the server is to put in the environmental variable. Normally, this would be hidden, but as this is an exercise, you can copy and paste the following into a .env file:
+
+```
+DATABASE_URI=mongodb+srv://guest:Gv9NtRd7whCNzodf@testing.zt52h.mongodb.net/seExercise?retryWrites=true&w=majority&appName=Testing
+```
+
+After this, you can start the server with 
 
 ```
  npm start

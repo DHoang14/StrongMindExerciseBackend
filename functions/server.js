@@ -5,8 +5,10 @@ const app = express();
 const cors = require('cors');
 const corsOptions = require('../config/corsOptions');
 const creds = require("../middleware/creds");
+const connectDB = require('../config/dbConnection');
 const PORT = process.env.port || 4500;
 
+connectDB();
 app.use(creds);
 app.use(cors(corsOptions));
 app.use(express.json());

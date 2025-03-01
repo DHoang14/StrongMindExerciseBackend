@@ -1,4 +1,6 @@
+const disconnectDB = require('../config/dbDisconnection');
 const Topping = require('../models/Topping')
+
 const getAllToppings = async (req, res) => {
     const toppings = await Topping.find();
     await disconnectDB();

@@ -3,9 +3,10 @@ const disconnectDB = require('../config/dbDisconnection');
 const Topping = require('../models/Topping')
 
 const getAllToppings = async (req, res) => {
-    await connectDB();
-    const toppings = await Topping.find();
-    await disconnectDB();
+    const database = await connectDB();
+    const collection = database.collection('toppings');
+    const toppings = await collection.find().toArray();// await Topping.find();
+    //await disconnectDB();
     if (!toppings) return res.status(204).json({'message': 'No toppings found.', 'toppings': []});
     res.json(toppings);
 }

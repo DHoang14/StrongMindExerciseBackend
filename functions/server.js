@@ -23,7 +23,8 @@ app.all('*', (req, res) => {
 
 //app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
 const handler = serverless(app);
-module.exports.handler = async(event, context) => {
+module.exports.handler = async (event, context) => {
+    context.callbackWaitsForEmptyEventLoop= false;
     const result = await handler(event, context);
     return result;
 }

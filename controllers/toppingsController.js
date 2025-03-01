@@ -1,26 +1,8 @@
-const connectDB = require('../config/dbConnection');
-const disconnectDB = require('../config/dbDisconnection');
 const Topping = require('../models/Topping')
-const { MongoClient } = require('mongodb');
-
 const getAllToppings = async (req, res) => {
-
-    const mongoClient = new MongoClient(process.env.DATABASE_URI)
-    try {
-        const client = await mongoClient.connect();
-        console.log('connected to mongoose');
-        const database = client.db('seExercise');
-        const collection = database.collection('toppings');
-        const toppings = await collection.find().toArray();// await Topping.find();
-        //await disconnectDB();
-        await mongoClient.close();
-        if (!toppings) return res.status(204).json({'message': 'No toppings found.', 'toppings': []});
-        res.json(toppings);
-    } catch (err) {
-        console.error(err);
-        res.status(500).json({'message': err});
-    }
-    
+    const toppings = await Topping.find();
+    if (!toppings) return res.status(204).json({'message': 'No toppings found.', 'toppings': []});
+    res.json(toppings);
 }
 
 const addTopping = async (req, res) => {

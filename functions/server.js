@@ -9,6 +9,7 @@ const connectDB = require('../config/dbConnection');
 const disconnectDB = require('../config/dbDisconnection')
 const PORT = process.env.port || 4500;
 
+connectDB();
 app.use(creds);
 app.use(cors(corsOptions));
 app.use(express.json());
@@ -21,10 +22,10 @@ app.all('*', (req, res) => {
     res.type('txt').send("404 NOT FOUND");
 });
 
-//app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
-const handler = serverless(app);
-module.exports.handler = async (event, context) => {
-    context.callbackWaitsForEmptyEventLoop= false;
-    const result = await handler(event, context);
-    return result;
-}
+app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
+// const handler = serverless(app);
+// module.exports.handler = async (event, context) => {
+//     context.callbackWaitsForEmptyEventLoop= false;
+//     const result = await handler(event, context);
+//     return result;
+// }

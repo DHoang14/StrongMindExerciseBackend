@@ -44,18 +44,20 @@ const deletePizza = async (req, res) => {
 }
 
 const updatePizza = async (req, res) => {
-    if (!req?.body?.id || !req?.body?.name) return res.status(400).json({'message': 'Pizza id and name are required.'});
+    if (!req?.body?.id) return res.status(400).json({'message': 'Pizza id is required.'});
     
     try {
         const pizza = await Pizza.findOne({_id: req.body.id}).exec();
         if (!pizza) {
             return res.status(204).json({'message': 'No pizza exists with that id.'});
         }
-        const duplicate = await Pizza.findOne({name: req.body.name}).exec();
-        if (duplicate) {
-            return res.status(409).json({'message': 'Pizza with that name already exists.'});
+        if (req.body?.name) {
+            const duplicate = await Pizza.findOne({name: req.body.name}).exec();
+            if (duplicate) {
+                return res.status(409).json({'message': 'Pizza with that name already exists.'});
+            }
+            pizza.name = req.body.name;
         }
-        pizza.name = req.body.name;
         if (req.body?.toppings) pizza.toppings = req.body.toppings;
         const result = await pizza.save();
         res.json(result);

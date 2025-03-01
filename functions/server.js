@@ -6,6 +6,7 @@ const cors = require('cors');
 const corsOptions = require('../config/corsOptions');
 const creds = require("../middleware/creds");
 const connectDB = require('../config/dbConnection');
+const disconnectDB = require('../config/dbDisconnection')
 const PORT = process.env.port || 4500;
 
 connectDB();
@@ -26,5 +27,6 @@ const handler = serverless(app);
 module.exports.handler = async (event, context) => {
     context.callbackWaitsForEmptyEventLoop= false;
     const result = await handler(event, context);
+    disconnectDB()
     return result;
 }
